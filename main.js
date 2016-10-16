@@ -8,7 +8,7 @@ window.onload = () => {
 
     var interval = 0;
     var first, second, line, countCurrency;
-    var url = "http://api.fixer.io/latest";
+    var url = "https://api.fixer.io/latest";
     var callBack;
 
     let buttonStart = document.getElementById("start");
@@ -44,7 +44,7 @@ window.onload = () => {
 };
 
 function downloadList(firstSelect, secondSelect) {
-    let url = "http://api.fixer.io/latest";
+    let url = "https://api.fixer.io/latest";
     let request = new XMLHttpRequest();
     request.open("GET", url, true);
     request.send();
