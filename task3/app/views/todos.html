@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="todolist not-done">
+        <h1>Todos</h1>
+        <input type="text" class="form-control add-todo" placeholder="Введите текст задания..."
+               ng-model="ctrl.newTodo.text">
+        <input type="text" class="form-control" ng-model="ctrl.newTodo.toDate" name="date"
+               data-date-format="dd.MM.yyyy" bs-datepicker>
+        <button class="btn btn-success" ng-click="ctrl.addTodo()">Добавить</button>
+        <hr>
+        <h2>Нужно сделать:</h2>
+        <todo ng-repeat="todo in ctrl.todos | filter:{state:ctrl.todoStates.pending}"
+              todo="todo" on-delete="ctrl.onTodoDelete(todo)"></todo>
+        <hr>
+        <h2>Сделано:</h2>
+        <todo ng-repeat="todo in ctrl.todos | filter:{state:ctrl.todoStates.done}" todo="todo"></todo>
+      </div>
+    </div>
+  </div>
+</div>

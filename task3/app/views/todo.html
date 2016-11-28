@@ -1,0 +1,37 @@
+<div class="row">
+  <table class="table table-stripted">
+    <tr>
+      <td>
+        {{ctrl.todo.text}}
+      </td>
+      <td>
+        {{ctrl.todo.toDate | date:'dd.MM.yyyy'}}
+      </td>
+      <td ng-hide="ctrl.todo.state == ctrl.todoStates.done">
+        <button type="button" class="btn btn-danger btn-xs" ng-click="ctrl.delete()">Delete</button>
+      </td>
+      <td ng-hide="ctrl.todo.state == ctrl.todoStates.done">
+        <button type="button" class="btn btn-primary btn-xs" ng-click="showme=true">Edit</button>
+      </td>
+      <td ng-hide="ctrl.todo.state == ctrl.todoStates.done">
+        <button type="button" class="btn btn-success btn-xs" ng-click="ctrl.done()">Done</button>
+      </td>
+
+    </tr>
+
+    <tr ng-show="showme">
+      <td>
+        <input type="text" class="form-control" ng-model="ctrl.editTodo.text"
+               ng-init="ctrl.editTodo.text = ctrl.todo.text; ctrl.editTodo.toDate = ctrl.todo.toDate">
+      </td>
+      <td>
+        <input type="text" class="form-control" ng-model="ctrl.editTodo.toDate"
+                data-date-format="dd.MM.yyyy" bs-datepicker>
+      </td>
+      <td>
+        <button type="button" class="btn btn-success btn-xs" ng-click="showme=false; ctrl.edit()">Save</button>
+      </td>
+    </tr>
+
+  </table>
+</div>
