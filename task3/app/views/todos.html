@@ -9,17 +9,17 @@
                data-date-format="dd.MM.yyyy" bs-datepicker>
         <button class="btn btn-success" ng-click="ctrl.addTodo()">Добавить</button>
         <hr>
-        <select size="1">
-          <option colorValue="1">1</option>
-          <option colorValue="2">2</option>
+        <select id="colorSelect" size="1">
+          <option value="1">1</option>
+          <option value="2">2</option>
         </select>
-        <button class="btn btn-warning" ng-click="ctrl.changeColor(colorValue)">Изменить стиль</button>
+        <button class="btn btn-warning" ng-click="ctrl.changeColor()">Изменить стиль</button>
         <hr>
-        <h2 id="h2_1">Нужно сделать:</h2>
+        <h2 id="h2_1"><b>Нужно сделать:</b></h2>
         <todo ng-repeat="todo in ctrl.todos | filter:{state:ctrl.todoStates.pending}"
               todo="todo" on-delete="ctrl.onTodoDelete(todo)"></todo>
         <hr>
-        <h2 id="h2_2">Сделано:</h2>
+        <h2 id="h2_2"><b>Сделано:</b></h2>
         <todo ng-repeat="todo in ctrl.todos | filter:{state:ctrl.todoStates.done}" todo="todo"></todo>
       </div>
     </div>

@@ -1,11 +1,10 @@
 'use strict';
 
 angular.module('task3App')
-  .controller('TodoCtrl', function ($resource,settings,todoStates,$scope) {
+  .controller('TodoCtrl', function ($resource,settings,todoStates) {
     var ctrl = this;
     ctrl.todoStates = todoStates;
     var todoResource = null;
-
 
     ctrl.newTodo = {
       text:'',

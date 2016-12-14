@@ -50,12 +50,5 @@ angular.module('task3App')
       };
     };
 
-    ctrl.changeColor = function (color) {
-      console.log(color);
-      less.modifyVars({
-        '@color': color
-      })
-    };
-
     getTodos();
   });

@@ -1,13 +1,16 @@
 @font-size: 20px;
+@font-family: "";
 @color: "";
 @value: 1;
 
 .body-style() when (@value = 1) {
   @color: red;
+  @font-family: Verdana;
 }
 
 .body-style() when (@value = 2) {
   @color: blue;
+  @font-family: "Courier New";
 }
 
 .bordered (@width) {
@@ -16,7 +19,8 @@
 
 h1 {
   font-size: @font-size * 2;
-  font-family: Verdana;
+  font-family: @font-family;
+
   color: lighten(@color, 20%);
 
   .bordered(5px)
@@ -24,17 +28,17 @@ h1 {
 
 h2 {
   font-size: @font-size;
-  font-family: "Courier New";
+  font-family: @font-family;
   color: @color;
 }
 
 #h2_1 {
   font-size: @font-size;
-  font-family: "Courier New";
+  font-family: @font-family;
   color: darken(@color, 10%);
 }
 #h2_2 {
   font-size: @font-size;
-  font-family: "Courier New";
-  color: darken(@color, 20%);
+  font-family: @font-family;
+  color: darken(@color, 30%);
 }
