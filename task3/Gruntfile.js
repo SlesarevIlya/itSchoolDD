@@ -16,7 +16,7 @@ module.exports = function (grunt) {
   require('jit-grunt')(grunt, {
     useminPrepare: 'grunt-usemin',
     ngtemplates: 'grunt-angular-templates',
-    cdnify: 'grunt-google-cdn'
+    cdnify: 'grunt-google-cdn',
   });
 
   // Configurable paths for the application
@@ -28,6 +28,21 @@ module.exports = function (grunt) {
   // Define the configuration for all the tasks
   grunt.initConfig({
 
+    less: {
+      development: {
+        options: {
+          compress: true,
+          yuicompress: true,
+          optimization: 2
+        },
+        files: {
+          // target.css file: source.less file
+          "app/styles/css/main.css": "app/styles/less/main.less"
+
+        }
+      }
+    },
+
     // Project settings
     yeoman: appConfig,
 
@@ -35,7 +50,10 @@ module.exports = function (grunt) {
     watch: {
       bower: {
         files: ['bower.json'],
-        tasks: ['wiredep']
+        tasks: [
+          'wiredep',
+          'connect:livereload'
+        ]
       },
       js: {
         files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
@@ -49,8 +67,13 @@ module.exports = function (grunt) {
         tasks: ['newer:jshint:test', 'newer:jscs:test', 'karma']
       },
       styles: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'postcss']
+        //files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
+        //tasks: ['newer:copy:styles', 'postcss']
+        files: ['app/styles/less/*.less'], // which files to watch
+        tasks: ['less'],
+        options: {
+          nospawn: true
+        }
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -62,6 +85,7 @@ module.exports = function (grunt) {
         files: [
           '<%= yeoman.app %>/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
+          'app/styles/css/*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
@@ -220,7 +244,7 @@ module.exports = function (grunt) {
             }
           }
       }
-    }, 
+    },
 
     // Renames files for browser caching purposes
     filerev: {
@@ -423,7 +447,8 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
-    }
+    },
+
   });
 
 
@@ -475,9 +500,13 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'newer:jshint',
-    'newer:jscs',
-    'test',
-    'build'
+    //'newer:jshint',
+    //'newer:jscs',
+    //'test',
+    //'build'
+    'watch'
   ]);
+
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 };
